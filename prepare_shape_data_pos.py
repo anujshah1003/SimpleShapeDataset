@@ -19,9 +19,8 @@ from shape_data_pos import *
 data_split="train"
 num_images=100
 img_size=200
-num_captions=3
 dest_path=r"D:\pet_projects\datasets\SimpleShapeDataset/{}".format(data_split)
-dest_csv_path=os.path.join(dest_path,"{}.csv".format(data_split))
+dest_csv_path=os.path.join(dest_path,"{}_ann.csv".format(data_split))
 
 shapes=["triangle","rectangle","square","circle"]
 for dir_ in shapes:
@@ -53,7 +52,7 @@ def prepare_image(shape="triangle",pos="center"):
         img_with_shape,img_attr=get_circle_pos(img,img_w,img_h,center_minus,center_plus,pos)
     return img_with_shape,img_attr
 
-columns=["image","shape","width","height","area","perimeter","num_sides","caption"]
+columns=["image","shape","width","height","area","perimeter","num_sides"]
 df=pd.DataFrame(columns=columns)
 for shape in shapes:
     for pos in positions:
@@ -67,5 +66,5 @@ for shape in shapes:
             cv2.imwrite(file_path,img)
             df=df.append({"image":output_file_name,"shape":shape,"width":attr["width"],"center_x":attr["center_x"],
                           "center_y":attr["center_y"],"position":attr["position"],"height":attr["height"],"area":attr["area"],
-                           "perimeter":attr["perimeter"],"num_sides":attr["num_sides"],"caption":attr["caption"]},ignore_index=True)
+                           "perimeter":attr["perimeter"],"num_sides":attr["num_sides"]},ignore_index=True)
 df.to_csv(dest_csv_path)

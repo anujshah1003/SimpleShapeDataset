@@ -68,11 +68,9 @@ def get_triangle_pos(img,img_w,img_h,center_minus,center_plus,pos):
     #euclidean distance
     perimeter=dist(pt1,pt2)+dist(pt1,pt3)+dist(pt2,pt3)
     perimeter=int(np.round(perimeter))
-    
-    caption="A triangle of {} pixels width, {} pixels height, an area of {} and perimeter of {}".format(width,height,area,perimeter)
-    
+        
     attributes={"num_sides":3,"width":width,"height":height,"center_x":centroid_x,"center_y":centroid_y,
-                "position":pos,"area":int(area),"perimeter":int(perimeter),"caption":caption}
+                "position":pos,"area":int(area),"perimeter":int(perimeter)}
     
     img_new=cv2.fillPoly(img.copy(), [pts], color=(255, 255, 255))
     
@@ -121,12 +119,9 @@ def get_circle_pos(img,img_w,img_h,center_minus,center_plus,pos):
 
     perimeter=2*math.pi*radius
     perimeter=int(np.round(perimeter))
-
-    caption="A circle of {} pixels diameter with an area of {} and perimeter of {}".format(width,area,perimeter)
-
     
     attributes={"num_sides":0,"width":width,"height":height,"center_x":center_x,"center_y":center_y,
-                "position":pos,"area":int(area),"perimeter":int(perimeter),"caption":caption}
+                "position":pos,"area":int(area),"perimeter":int(perimeter)}
     
     img_new=cv2.circle(img.copy(), pt1, radius, (255,255,255), -1)
     
@@ -179,12 +174,9 @@ def get_rectangle_pos(img,img_w,img_h,center_minus,center_plus,pos):
 
     perimeter=2*(width+height)
     perimeter=int(np.round(perimeter))
-    
-    caption="A rectangle of {} pixels width, {} pixels height, an area of {} and perimeter of {}".format(width,height,area,perimeter)
-
 
     attributes={"num_sides":4,"width":width,"height":height,"center_x":center_x,"center_y":center_y,
-                "position":pos,"area":area,"perimeter":perimeter,"caption":caption}
+                "position":pos,"area":area,"perimeter":perimeter}
     
     img_new=cv2.rectangle(img.copy(), pt1, pt2, (255,255,255), -1)
     
@@ -237,11 +229,8 @@ def get_square_pos(img,img_w,img_h,center_minus,center_plus,pos):
     perimeter=2*(width+height)
     perimeter=int(np.round(perimeter))
 
-    caption="A square of {} pixels side dimension with an area of {} and perimeter of {}".format(width,area,perimeter)
-
-
     attributes={"num_sides":4,"width":width,"height":height,"center_x":center_x,"center_y":center_y,
-                "position":pos,"area":area,"perimeter":perimeter,"caption":caption}
+                "position":pos,"area":area,"perimeter":perimeter}
     
     img_new=cv2.rectangle(img.copy(), pt1, pt2, (255,255,255), -1)
     
